@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&family=Open+Sans:wght@300&family=Roboto&display=swap"
+    rel="stylesheet" />
+
+  <title>Document</title>
+</head>
+<style></style>
+
+<body>
+  <select name="" id="sel1">
+    <option data-family="Cairo" value="Cairo">Cairo</option>
+    <option data-family="Open Sans" value="Open Sans">Open Sans</option>
+    <option data-family="Roboto" value="Roboto">Roboto</option>
+  </select>
+  <select name="" id="sel2">
+    <option>red</option>
+    <option>green</option>
+    <option>blue</option>
+    <option>pink</option>
+    <option>grey</option>
+    <option>black</option>
+  </select>
+  <select name="" id="sel3">
+    <option value="">16px</option>
+    <option value="">17px</option>
+    <option value="">18px</option>
+    <option value="">19px</option>
+    <option value="">20px</option>
+    <option value="">21px</option>
+    <option value="">22px</option>
+    <option value="">23px</option>
+    <option value="">24px</option>
+    <option value="">25px</option>
+    <option value="">26px</option>
+    <option value="">27px</option>
+    <option value="">28px</option>
+    <option value="">29px</option>
+    <option value="">30px</option>
+  </select>
+  <h1>HI im ahmad</h1>
+  <script>
+    let selectors = document.getElementsByTagName("select");
+    let select1 = document.getElementById("sel1");
+    let select1C = document.querySelectorAll("#sel1 option");
+    let select2 = document.getElementById("sel2");
+    let select3 = document.getElementById("sel3");
+    let h1 = document.getElementsByTagName("h1")[0];
+    // h1.style.cssText = "font-size: 16px; color: red; font-family: cairo;"
+    Array.from(selectors).forEach((sels) => {
+      Array.from(sels).forEach((option) => {
+        option.value = option.textContent;
+
+      });
+    });
+    Array.from(select2.children).forEach((option) => {
+      option.dataset.color = option.value;
+
+    });
+    Array.from(select3.children).forEach((option) => {
+      option.dataset.size = option.value;
+    });
+    if (window.localStorage.getItem("color")) {
+      h1.style.color = window.localStorage.getItem("color");
+      Array.from(select1.children).forEach((option) => {
+        option.removeAttribute("selected");
+      });
+      document.querySelector(`[data-color="${window.localStorage.getItem("color")}"]`).setAttribute("selected", true);
+    };
+    if (window.localStorage.getItem("family")) {
+      h1.style.fontFamily = window.localStorage.getItem("family");
+      Array.from(select2.children).forEach((option) => {
+        option.removeAttribute("selected")
+      });
+      document.querySelector(`[data-family="${window.localStorage.getItem("family")}"]`).setAttribute("selected", true);
+    };
+    if (window.localStorage.getItem("size")) {
+      h1.style.fontSize = window.localStorage.getItem("size");
+      Array.from(select3.children).forEach((option) => {
+        option.removeAttribute("selected")
+      });
+      document.querySelector(`[data-size="${window.localStorage.getItem("size")}"]`).setAttribute("selected", true);
+
+    }
+
+    select1.addEventListener("change", (e) => {
+      localStorage.setItem("family", e.currentTarget.value);
+      h1.style.fontFamily = select1.value;
+
+    });
+    select2.addEventListener("change", (e) => {
+      localStorage.setItem("color", e.currentTarget.value);
+      h1.style.color = select2.value;
+    })
+    select3.addEventListener("change", (e) => {
+      localStorage.setItem("size", e.currentTarget.value);
+      h1.style.fontSize = select3.value;
+
+    });
+    
+
+
+  </script>
+</body>
+
+</html>

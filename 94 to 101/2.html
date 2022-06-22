@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .assign {
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    .assign input {
+      padding: 10px;
+      width: 300px;
+      border: 1px solid #ddd;
+    }
+
+    .assign input:focus {
+      outline: none;
+      border-color: #ccc;
+    }
+
+    .assign [title="Current"] {
+      padding: 20px;
+      margin: 10px auto;
+      width: 610px;
+      background-color: #f1f0f0;
+    }
+
+    .assign .classes-list {
+      padding: 20px;
+      margin: 10px auto;
+      width: 610px;
+      background-color: #f1f0f0;
+    }
+
+    .assign .classes-list h5 {
+      margin: 0 0 10px;
+      text-align: left;
+    }
+
+    .assign .classes-list div span {
+      background-color: #ff5722;
+      padding: 6px 10px 8px;
+      margin-right: 5px;
+      border-radius: 6px;
+      color: white;
+      display: inline-flex;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="assign">
+    <input type="text" class="classes-to-add" placeholder="Add Classes" />
+    <input type="text" class="classes-to-remove" placeholder="Remove Classes" />
+    <div class="element current" title="Current">Current Element</div>
+    <div class="classes-list">
+      <h5>Current Element Class Lists</h5>
+      <div></div>
+    </div>
+  </div>
+  <script>  
+let addClass = document.getElementsByClassName("classes-to-add")[0];
+let removeClass = document.getElementsByClassName("classes-to-remove")[0];
+let theElement = document.getElementsByClassName("current")[0];
+let showClassList = document.querySelectorAll(".classes-list div")[0];
+// addClasses
+addClass.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    if (addClass.value.toLowerCase().split(" ").length === 1) {
+      let theSpan = document.createElement("span");
+      theElement.classList.add(addClass.value.toLowerCase());
+      theSpan.textContent = addClass.value.toLowerCase();
+      showClassList.appendChild(theSpan);
+      addClass.value = "";
+    } else {
+      addClass.value.toLowerCase().split(" ").forEach((el)=>{
+        let theSpan = document.createElement("span");
+        theElement.classList.add(el);
+        theSpan.textContent = el;
+        showClassList.appendChild(theSpan);
+        addClass.value = "";
+      });
+      return;
+    }
+  }
+});
+// removeClasses
+removeClass.addEventListener("keydown", (e) => {
+  let theSpan = document.createElement("span");
+  if (e.key === "Enter") {
+    Array.from(showClassList.children).forEach((ele) => {
+      if (ele.textContent == removeClass.value) {
+        showClassList.removeChild(ele);
+      }
+    })
+    removeClass.value = "";
+  }
+});
+
+  </script>
+</body>
+</html>
+<!-- done --> 

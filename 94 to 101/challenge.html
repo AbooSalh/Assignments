@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let html = document.getElementsByTagName("html")[0]
+        html.style.cssText = `
+        margin:0;
+        padding: 0;
+        box-sizing:border-box;
+        font-family: sans-serif;
+        `
+        // header 
+        let header = document.createElement("header");
+        let logo = document.createElement("div");
+        header.appendChild(logo);
+        logo.textContent = "Elzero"
+        document.body.appendChild(header);
+        let divLinks = document.createElement("div")
+        header.appendChild(divLinks)
+        // links
+        let home = document.createElement("a")
+        let about = document.createElement("a")
+        let serveice = document.createElement("a")
+        let contact = document.createElement("a")
+        divLinks.appendChild(home)
+        divLinks.appendChild(about)
+        divLinks.appendChild(serveice)
+        divLinks.appendChild(contact)
+        // add links text
+        home.textContent = "Home";
+        about.textContent = "About";
+        serveice.textContent = "Serveice";
+        contact.textContent = "Contact";
+        // style header
+        header.style.cssText = `
+        display:flex;
+        justify-content:space-around;
+        align-items:center;
+        padding:10px;
+        height:32px;
+        `;
+        logo.style.cssText = `
+        color: green;
+        font-size: 22px;
+        `
+        Array.from(divLinks.children).forEach((ele)=>{
+            ele.style.cssText = `
+            margin: 0 12px;
+            cursor: pointer;
+            `
+        })
+        // container
+        let container = document.createElement("div");
+        document.body.appendChild(container);
+        container.classList.add("container");
+        for (let i = 0; i < 15; i++) {
+            let card = document.createElement("div");
+            let h2 = document.createElement("h2");
+            let p = document.createElement("p");
+            let productNumber = i+1;
+            card.appendChild(h2);
+            card.appendChild(p);
+            p.textContent = "product";
+            h2.innerText = productNumber;
+            container.appendChild(card);
+            card.classList.add("card");
+            card.style.cssText = `
+            text-align: center;
+            height: 128px;
+            width: 300px;
+            box-shadow: black 0px 0px 6px 0px;
+            border-radius: 5px;
+            margin:24px;
+            `
+            
+        }
+        // style Container
+        container.style.cssText = `
+        background-color:#f6f6f6;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content:center;
+        `
+        // footer
+        let footer = document.createElement("footer");
+        footer.textContent = "copyright 2020"
+        document.body.appendChild(footer)
+        footer.style.cssText = `
+        display: flex;
+        background-color: #19923e;
+        text-align: center;
+        color: white;
+        height: 52px;
+        justify-content: center;
+        align-items: center;
+        `
+
+    </script>
+</body>
+</html>
+<!-- done -->
