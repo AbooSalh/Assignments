@@ -1,5 +1,5 @@
 let req = new XMLHttpRequest();
-req.open("GET", "http://myjson.dit.upm.es/api/bins/hmhf");
+req.open("GET", "articles.json");
 req.send()
 console.log(req);
 let updatedData = {}
@@ -26,7 +26,7 @@ req.onreadystatechange = () => {
                             <p>Author: ${obj.name}</p>
                             <p>Category: ${obj.category}</p>
                         </div>
-        `
+                        `
             divData.innerHTML = dataDiv;
         })
 
